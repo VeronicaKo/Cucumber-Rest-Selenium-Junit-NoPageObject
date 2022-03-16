@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>CucumberApiSelenium</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.2captcha</groupId>
+            <artifactId>2captcha-java</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>localrepository</id>-->
+<!--            <url>file://${project.basedir}/runtime</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>isimple-remote-repos</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/isimple-remote-repos</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>Isimple</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/Isimple</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>remote-repos</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/remote-repos</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>libs-release</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/libs-release/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>jcenter</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/jcenter/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>ext-release-local</id>-->
+<!--            <url>http://10.100.0.137:8081/artifactory/ext-release-local/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+</project>
