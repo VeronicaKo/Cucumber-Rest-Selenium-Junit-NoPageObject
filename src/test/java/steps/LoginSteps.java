@@ -1,4 +1,5 @@
-package Steps;
+package steps;
+
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -7,43 +8,37 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginStepdefs {
-    private final WebDriver driver = new ChromeDriver();
+public class LoginSteps {
+    WebDriver driver = Hooks.driver;
 
-    @Given("^I am on the login page$")
-    public void iAmOnTheLoginPage() {
-        driver.get("http://test-app.d6.dev.devcaz.com/admin/login");
+    @Given("^I am on the login page \"([^\"]*)\"$")
+    public void iAmOnTheLoginPage(String site) {
+        driver.get(site);
     }
 
     @When("^I enter in the login \"([^\"]*)\"$")
-    public void iFillInWith(String login) throws Throwable {
+    public void iFillInWith(String login) {
         WebElement loginInput = driver.findElement(By.id("UserLogin_username"));
         loginInput.sendKeys(login);
     }
 
     @And("^I enter in the password \"([^\"]*)\"$")
-    public void iFillInPasswordWith(String password) throws Throwable {
+    public void iFillInPasswordWith(String password) {
         WebElement passwordInput = driver.findElement(By.id("UserLogin_password"));
         passwordInput.sendKeys(password);
     }
 
     @And("^I press Login button")
-    public void iPress() throws Throwable {
+    public void iPress() {
         WebElement loginButton = driver.findElement(By.name("yt0"));
         loginButton.click();
     }
 
-    @Then("^I should be on the admin page$")
-    public void iShouldBeOnTheUsersHomePage() {
+    @Then("^I should see admin panel$")
+    public void iShouldSeeAdminPanel() {
         WebElement adminPanel = driver.findElement(By.id("nav"));
         adminPanel.isDisplayed();
-    }
-
-    @After
-    public void afterTest() {
-        driver.quit();
     }
 
 }

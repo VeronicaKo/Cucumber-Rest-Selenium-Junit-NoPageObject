@@ -1,4 +1,4 @@
-@tableplayers
+@sortplayerstable
 Feature: Opening table of players
 
   Scenario: Open players in admin interface
@@ -8,4 +8,6 @@ Feature: Opening table of players
     And I press Login button
     And I select the menu administration item by number "6"
     And I click on the button players
-    Then I should see table of players with "20" item
+    And I should see table of players with "20" item
+    And I click heading Username of Players table
+    Then I check sorting of Username

@@ -6,13 +6,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/features",
-//    glue = "ru.savkk.test",
-//    tags = "@withdrawal",
-//    dryRun = false,
-//    strict = false,
+    tags = "@sortplayerstable",
     snippets = SnippetType.UNDERSCORE
-//    ,
-//    name = "^Успешное|Успешная.*"
 )
 public class RunnerTest {
 
