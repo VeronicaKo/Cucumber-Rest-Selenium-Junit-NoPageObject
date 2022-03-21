@@ -1,11 +1,12 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
+import java.time.Duration;
 
 public class Hooks {
     public static WebDriver driver;
@@ -16,6 +17,7 @@ public class Hooks {
                 "webdriver.chrome.driver",
                 new File("src\\main\\resources\\driver\\chromedriver.exe").getAbsolutePath());
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 
