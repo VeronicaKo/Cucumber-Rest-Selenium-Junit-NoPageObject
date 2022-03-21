@@ -1,4 +1,4 @@
-##Тестовое задание
+## Тестовое задание
 Реализовать UI и API тесты с использованием:
 - UI: Java + Selenium WebDriver + Cucumber
 - API: Java + Rest Assured
@@ -12,7 +12,7 @@
 - Lombok 1.18.2
 - Jackson 2.13.1
 
-###API
+### API
 Автоматизировать следующие тесты, используя Rest Assured. Необходимые выдержки из документации по API приведены ниже
 
 URL: http://test-api.d6.dev.devcaz.com/
@@ -38,7 +38,7 @@ Protected Resource Request * GET /v2/players HTTP/1.1 * Запрос защищ�
 4и5  Get a single player profile * GET /v2/players/:id HTTP/1.1 * Получить профиль одного игрока
 
 
-###UI
+### UI
 Автоматизировать следующие тесты используя связку Java + Selenium WebDriver + Cucumber
 
 URL: http://test-app.d6.dev.devcaz.com/admin/login
