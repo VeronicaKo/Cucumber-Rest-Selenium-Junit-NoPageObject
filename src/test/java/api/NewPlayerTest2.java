@@ -1,14 +1,24 @@
 package api;
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import org.junit.Test;
 import pogo.NewPlayerRequest;
 import pogo.NewPlayerResponse;
 
+import static api.MyRequestSpecification.requestSpec;
 import static io.restassured.RestAssured.given;
 
 public class NewPlayerTest2 {
     @Test
     public void newPlayer() {
+
+        requestSpec = new RequestSpecBuilder()
+                .setBaseUri("http://test-api.d6.dev.devcaz.com/")
+//                .setAccept(ContentType.JSON)
+                .setContentType(ContentType.JSON)
+//                .addHeaders(forHeaders)
+                .build();
 
         NewPlayerRequest request =
                 NewPlayerRequest.builder()
@@ -22,8 +32,8 @@ public class NewPlayerTest2 {
                         .build();
 
         NewPlayerResponse response = given()
-                .spec(MyRequestSpecification.create())
-                .auth().oauth2("2d6b0a8391742f5d789d7d915755e09e")
+                .spec(requestSpec)
+//                .auth().oauth2("2d6b0a8391742f5d789d7d915755e09e")
                 .basePath("/v2/players")
                 .body(request)
                 .log().all()

@@ -4,12 +4,13 @@ import org.junit.Test;
 import pogo.AuthorisationResponse;
 import pogo.OwnerPasswordCredentialsGrantRequest;
 
+import static api.MyRequestSpecification.requestSpec;
 import static io.restassured.RestAssured.given;
 
 
-public class ResourceOwnerPasswordCredentialsGrantRequestTest3 {
+public class ResourceOwnerPasswordCredentialsGrantTest3 {
     @Test
-    public void token() {
+    public void resourceOwnerPasswordCredentialsGrant() {
 
         OwnerPasswordCredentialsGrantRequest request =
                 OwnerPasswordCredentialsGrantRequest.builder()
@@ -19,7 +20,7 @@ public class ResourceOwnerPasswordCredentialsGrantRequestTest3 {
                         .build();
 
         given()
-                .spec(MyRequestSpecification.create())
+                .spec(requestSpec)
                 .basePath("/v2/oauth/token")
                 .body(request)
                 .log().all()

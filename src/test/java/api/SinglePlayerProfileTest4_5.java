@@ -6,6 +6,7 @@ import pogo.NewPlayerResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static api.MyRequestSpecification.requestSpec;
 import static io.restassured.RestAssured.given;
 
 public class SinglePlayerProfileTest4_5 {
@@ -15,7 +16,7 @@ public class SinglePlayerProfileTest4_5 {
         forHeaders.put("Authorization", ("Basic " + "front_2d6b0a8391742f5d789d7d915755e09e"));
 
         given()
-                .spec(MyRequestSpecification.create())
+                .spec(requestSpec)
                 .basePath("v2/players/1")
                 .log().all()
                 .when()
@@ -24,8 +25,5 @@ public class SinglePlayerProfileTest4_5 {
                 .statusCode(200)
                 .assertThat()
                 .extract().as(NewPlayerResponse.class);
-
-
-
     }
 }
