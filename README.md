@@ -17,23 +17,13 @@
 
 URL: http://test-api.d6.dev.devcaz.com/
 
-| Тест                                 |                       Ожидаемый результат             |
-|--------------------------------------|-------------------------------------------------------|
-| Получить токен гостя (Client Credentials Grant, scope — guest:default)| HTTP response code — 200; Ответ содержит токен |
-| Зарегистрировать игрока | HTTP response code — 201; Ответ соответствует документации |
-| Авторизоваться под созданным игроком (Resource Owner Password Credentials Grant) | HTTP response code — 200; Ответ содержит токен |
-| Запросить данные профиля игрока | HTTP response code — 200 ; Ответ соответствует документации |
-| Запросить данные другого игрока | HTTP response code — 404 |
-
-1 Authorization / Client Credentials Grant * POST /v2/oauth2/token HTTP/1.1 * Предоставление учетных данных клиента
-
-3 Resource Owner Password Credentials Grant / Access Token Request * POST /v2/oauth2/token HTTP/1.1 * Владелец ресурса Пароль Учетные данные Предоставление
-
-Protected Resource Request * GET /v2/players HTTP/1.1 * Запрос защищенного ресурса
-
-2 Players / Register a new player * POST /v2/players HTTP/1.1 * Игроки / Зарегистрируйте нового игрока
-
-4и5  Get a single player profile * GET /v2/players/:id HTTP/1.1 * Получить профиль одного игрока
+| Тест                                 |                       Ожидаемый результат             |                                    |
+|--------------------------------------|-------------------------------------------------------|------------------------------------|
+| Получить токен гостя (Client Credentials Grant, scope — guest:default)| HTTP response code — 200; Ответ содержит токен | Authorization / Client Credentials Grant * POST /v2/oauth2/token |
+| Зарегистрировать игрока | HTTP response code — 201; Ответ соответствует документации | Players / Register a new player * POST /v2/players |
+| Авторизоваться под созданным игроком (Resource Owner Password Credentials Grant) | HTTP response code — 200; Ответ содержит токен | Resource Owner Password Credentials Grant / Access Token Request |
+| Запросить данные профиля игрока | HTTP response code — 200 ; Ответ соответствует документации | Get a single player profile * GET /v2/players/:id  |
+| Запросить данные другого игрока | HTTP response code — 404 | Get a single player profile * GET /v2/players/:id  |
 
 
 ### UI
