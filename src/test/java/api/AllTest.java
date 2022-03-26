@@ -38,7 +38,6 @@ public class AllTest {
                 .spec(requestSpec)
                 .basePath("v2/oauth2/token")
                 .body(requestAuthorisation)
-                .log().all()
                 .when()
                 .post()
                 .then()
@@ -125,7 +124,5 @@ public class AllTest {
                 .statusCode(404)
                 .assertThat()
                 .extract().as(NewPlayerResponse.class);
-
     }
-
 }
