@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OwnerPasswordCredentialsGrantRequest {
-	private String grantType;
+	private String grant_type;
 	private String username;
 	private String password;
 }

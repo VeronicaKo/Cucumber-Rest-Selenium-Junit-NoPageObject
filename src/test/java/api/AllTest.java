@@ -7,15 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 import pogo.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static api.MyRequestSpecification.requestSpec;
 import static io.restassured.RestAssured.given;
 
 public class AllTest {
     public static RequestSpecification requestSpec;
     public static String token;
+    public static int playerID;
+    public static String playerToken;
 
     @Before
     public void initSpec() {
@@ -27,37 +25,37 @@ public class AllTest {
                 .build();
     }
 
-    @Test
-    public void authorization() {
+    public String OurAuthorization(String autorisation) {
 
-        AuthorisationRequest request =
+        AuthorisationRequest requestAuthorisation =
                 AuthorisationRequest.builder()
                         .grant_type("client_credentials")
                         .scope("guest:default") //scope1:read scope1:write scope2:read
                         .build();
 
         token = given()
-//                .header("Authorisation", "Basic front_2d6b0a8391742f5d789d7d915755e09e")
-//                .header("Authorisation", "Basic c29tZWNsaWVudDphbmRpdHNzZWNyZXQ=")
-//                .auth().oauth2("front_2d6b0a8391742f5d789d7d915755e09e")
-//                .auth().oauth2("c29tZWNsaWVudDphbmRpdHNzZWNyZXQ=")
-//                .auth().basic("user","front_2d6b0a8391742f5d789d7d915755e09e")
-//                .auth().basic("Basic","c29tZWNsaWVudDphbmRpdHNzZWNyZXQ=")
+                .header("Authorisation", "Basic front_2d6b0a8391742f5d789d7d915755e09e")
                 .spec(requestSpec)
                 .basePath("v2/oauth2/token")
-                .body(request)
+                .body(requestAuthorisation)
                 .log().all()
                 .when()
                 .post()
                 .then()
                 .statusCode(200).assertThat()
                 .extract().as(AuthorisationResponse.class).getAccess_token();
+
+        return token;
     }
 
     @Test
-    public void newPlayer() {
+    public void player() {
 
-        NewPlayerRequest request =
+        //authorisation as admin
+        token = OurAuthorization("Basic front_2d6b0a8391742f5d789d7d915755e09e");
+
+        //NewPlayer
+        NewPlayerRequest requestPlayer =
                 NewPlayerRequest.builder()
                         .username("janedoe")
                         .password_change("am9obmRvZTEyMw==")
@@ -68,33 +66,29 @@ public class AllTest {
                         .currency_code("EUR")
                         .build();
 
-        NewPlayerResponse response = given()
+        playerID = given()
                 .spec(requestSpec)
-                .auth().oauth2(token)
+                .header("Authorisation", "Basic " + token)
                 .basePath("/v2/players")
-                .body(request)
-                .log().all()
+                .body(requestPlayer)
                 .when()
                 .post()
                 .then()
                 .statusCode(201)
                 .assertThat()
-                .extract().as(NewPlayerResponse.class);
-    }
+                .extract().as(NewPlayerResponse.class).getId();
 
-    @Test
-    public void resourceOwnerPasswordCredentialsGrant() {
 
+        //authorisation as player
         OwnerPasswordCredentialsGrantRequest request =
                 OwnerPasswordCredentialsGrantRequest.builder()
-                        .grantType("password")
-                        .username("johndoe")
+                        .grant_type("password")
+                        .username("janedoe")
                         .password("am9obmRvZTEyMw==")
                         .build();
 
-        given()
+        playerToken = given()
                 .spec(requestSpec)
-                .auth().oauth2(token)
                 .basePath("/v2/oauth/token")
                 .body(request)
                 .log().all()
@@ -102,17 +96,14 @@ public class AllTest {
                 .post()
                 .then()
                 .statusCode(200)
-                .assertThat().extract().as(AuthorisationResponse.class);
+                .assertThat().extract().as(AuthorisationResponse.class).getAccess_token();
 
-    }
 
-    @Test
-    public void singlePlayerProfile() {
-
+        //get data of  authorised player
         given()
                 .spec(requestSpec)
-                .auth().oauth2(token)
-                .basePath("v2/players/1")
+                .header("Authorisation", "Basic " + playerToken)
+                .basePath("v2/players/" + playerID)
                 .log().all()
                 .when()
                 .get()
@@ -120,6 +111,21 @@ public class AllTest {
                 .statusCode(200)
                 .assertThat()
                 .extract().as(NewPlayerResponse.class);
+
+
+        //get data other player
+        given()
+                .spec(requestSpec)
+                .header("Authorisation", "Basic " + playerToken)
+                .basePath("v2/players/" + "123")
+                .log().all()
+                .when()
+                .get()
+                .then()
+                .statusCode(404)
+                .assertThat()
+                .extract().as(NewPlayerResponse.class);
+
     }
 
 }
