@@ -64,35 +64,3 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>localrepository</id>-->
-<!--            <url>file://${project.basedir}/runtime</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>isimple-remote-repos</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/isimple-remote-repos</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>Isimple</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/Isimple</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>remote-repos</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/remote-repos</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>libs-release</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/libs-release/</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>jcenter</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/jcenter/</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>ext-release-local</id>-->
-<!--            <url>http://10.100.0.137:8081/artifactory/ext-release-local/</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
-</project>
