@@ -46,7 +46,7 @@ URL: http://test-app.d6.dev.devcaz.com/admin/login
 mvn test -Dcucumber.filter.tags="@loginadmin"
 ```
 
-Для запуска API тестов через командную строку использовать команду, теги тестов указаны в таблице выше:
+Для запуска API тестов через командную строку использовать команду:
 ```bash
 mvn test -Dtest=AllTest
 ```
